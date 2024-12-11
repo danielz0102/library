@@ -1,4 +1,5 @@
 const library = []
+const modal = document.querySelector('#addBookModal')
 
 function Book(title, author, pages, readed) {
   this.title = title
@@ -27,7 +28,7 @@ function showBooks() {
         let value = book[key]
 
         if (typeof value === 'boolean') {
-          value = value ? '✅' : '❌'
+          value = value ? '✔' : '✖'
         }
 
         const cell = document.createElement('td')
@@ -39,6 +40,15 @@ function showBooks() {
     body.appendChild(row)
   })
 }
+
+function validateForm(e) {
+  e.preventDefault()
+  
+}
+
+document.querySelector('#showModalBtn').addEventListener('click', modal.showModal.bind(modal))
+document.querySelector('#closeModalBtn').addEventListener('click', modal.close.bind(modal))
+document.querySelector('#submitBtn').addEventListener('click', validateForm)
 
 addBookToLibrary('1984', 'George Orwell', '328', true);
 addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', false);

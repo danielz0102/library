@@ -1,5 +1,15 @@
-* {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
+}
+
+h1, h2 {
+  margin: 0;
+}
+
+input, button {
+  font: inherit;
 }
 
 body {
@@ -8,6 +18,7 @@ body {
 
 h1 {
   text-align: center;
+  margin-block: 16px;
 }
 
 #libraryTable {
@@ -35,4 +46,71 @@ tbody tr:nth-child(odd) {
 
 tbody tr:nth-child(even) {
   background-color: #fff;
+}
+
+#showModalBtn {
+  display: block;
+  margin: 0 auto 16px auto;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 350px;
+}
+
+h2 {
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+label:not(.checkbox-label) {
+  display: block;
+  margin-bottom: 4px;
+}
+
+input:not([type="checkbox"]) {
+  padding: 8px 16px;
+  width: 100%;
+}
+
+.form-row, .form-checkbox-row {
+  margin-bottom: 8px;
+}
+
+dialog, #submitBtn {
+  border: none;
+  border-radius: 8px;
+  border: 1px solid #000;
+}
+
+dialog {
+  position: relative;
+}
+
+#submitBtn {
+  background-color: #000;
+  color: #fff;
+  font-weight: 600;
+  padding-block: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#submitBtn:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+#closeModalBtn {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+
+  background: none;
+  border: none;
+  cursor: pointer;
 }
