@@ -1,0 +1,38 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Helvetica, system-ui;
+}
+
+h1 {
+  text-align: center;
+}
+
+#libraryTable {
+  margin-inline: auto;
+  width: 750px;
+  border: 1px solid #000;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #000;
+}
+
+thead tr {
+  background-color: #16c2ec;
+}
+
+tbody {
+  text-align: center;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #e7e9eb;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #fff;
+}
