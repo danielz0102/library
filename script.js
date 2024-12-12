@@ -1,5 +1,6 @@
 const library = []
 const modal = document.querySelector('#addBookModal')
+const form = document.querySelector('form')
 
 function Book(title, author, pages, readed) {
   this.title = title
@@ -19,8 +20,10 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 function showBooks() {
+  const body = document.querySelector('#libraryTable tbody')
+  body.innerHTML = ''
+
   library.forEach(book => {
-    const body = document.querySelector('#libraryTable tbody')
     const row = document.createElement('tr')
 
     for (const key in book) {
@@ -42,16 +45,24 @@ function showBooks() {
 }
 
 function validateForm(e) {
-  const form = document.querySelector('form')
-  const formIsValid = document.querySelector('form').checkValidity()
-  // const [titleInput, authorInput, pagesInput, isRead] = Array.from(document.querySelectorAll('input')).map(
-  //   input => input.type === 'checkbox' ? input.checked : input.value
-  // )
+  e.preventDefault()
+  const formIsValid = form.checkValidity()
+  
+  if (formIsValid) {
+    const bookInfo = Array.from(document.querySelectorAll('input')).map(
+      input => input.type === 'checkbox' ? input.checked : input.value
+    )
+
+    addBookToLibrary(...bookInfo)
+    showBooks()
+    form.reset()
+    modal.close()
+  }
 }
 
 document.querySelector('#showModalBtn').addEventListener('click', modal.showModal.bind(modal))
 document.querySelector('#closeModalBtn').addEventListener('click', modal.close.bind(modal))
-document.querySelector('#submitBtn').addEventListener('click', validateForm)
+form.addEventListener('submit', validateForm)
 
 addBookToLibrary('1984', 'George Orwell', '328', true);
 addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', false);
