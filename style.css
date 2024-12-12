@@ -24,16 +24,16 @@ h1 {
 #libraryTable {
   margin-inline: auto;
   width: 750px;
-  border: 1px solid #000;
   border-collapse: collapse;
 }
 
-th, td {
+tr {
   border: 1px solid #000;
 }
 
 thead tr {
-  background-color: #16c2ec;
+  background-color: #000;
+  color: #fff;
 }
 
 tbody {
@@ -48,11 +48,29 @@ tbody tr:nth-child(even) {
   background-color: #fff;
 }
 
+.btn {
+  background-color: #000;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+dialog, #submitBtn, .btn {
+  border: none;
+  border-radius: 8px;
+  border: 1px solid #000;
+}
+
 #showModalBtn {
   display: block;
   margin: 0 auto 16px auto;
-  padding: 8px 16px;
-  cursor: pointer;
+  padding: 12px 16px;
 }
 
 form {
@@ -75,16 +93,19 @@ label:not(.checkbox-label) {
 input:not([type="checkbox"]) {
   padding: 8px 16px;
   width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  border: 1px solid #000;
+  transition: box-shadow 0.2s;
+}
+
+input:not([type="checkbox"]):focus {
+  box-shadow: 0 0 5px #9c9898;
 }
 
 .form-row, .form-checkbox-row {
   margin-bottom: 8px;
-}
-
-dialog, #submitBtn {
-  border: none;
-  border-radius: 8px;
-  border: 1px solid #000;
 }
 
 dialog {
@@ -92,17 +113,7 @@ dialog {
 }
 
 #submitBtn {
-  background-color: #000;
-  color: #fff;
-  font-weight: 600;
   padding-block: 16px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-#submitBtn:hover {
-  background-color: #fff;
-  color: #000;
 }
 
 #closeModalBtn {

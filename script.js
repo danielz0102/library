@@ -28,7 +28,7 @@ function showBooks() {
         let value = book[key]
 
         if (typeof value === 'boolean') {
-          value = value ? '✔' : '✖'
+          value = value ? 'Read' : 'Not read'
         }
 
         const cell = document.createElement('td')
