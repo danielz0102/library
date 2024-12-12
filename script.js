@@ -42,8 +42,11 @@ function showBooks() {
 }
 
 function validateForm(e) {
-  e.preventDefault()
-  
+  const form = document.querySelector('form')
+  const formIsValid = document.querySelector('form').checkValidity()
+  // const [titleInput, authorInput, pagesInput, isRead] = Array.from(document.querySelectorAll('input')).map(
+  //   input => input.type === 'checkbox' ? input.checked : input.value
+  // )
 }
 
 document.querySelector('#showModalBtn').addEventListener('click', modal.showModal.bind(modal))

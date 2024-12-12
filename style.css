@@ -104,6 +104,16 @@ input:not([type="checkbox"]):focus {
   box-shadow: 0 0 5px #9c9898;
 }
 
+input:user-invalid {
+  border-color: #cc0c0c;
+}
+
+input:user-invalid + span::after {
+  content: '* This field is required';
+  color: #cc0c0c;
+  font-size: 0.8rem;
+}
+
 .form-row, .form-checkbox-row {
   margin-bottom: 8px;
 }
@@ -124,4 +134,8 @@ dialog {
   background: none;
   border: none;
   cursor: pointer;
+}
+
+#closeModalBtn:hover {
+  font-weight: 600;
 }
