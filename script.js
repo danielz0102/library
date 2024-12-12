@@ -2,6 +2,18 @@ const library = []
 const modal = document.querySelector('#addBookModal')
 const form = document.querySelector('form')
 
+document.querySelector('#showModalBtn').addEventListener('click', modal.showModal.bind(modal))
+document.querySelector('#closeModalBtn').addEventListener('click', modal.close.bind(modal))
+form.addEventListener('submit', validateForm)
+
+addBookToLibrary('1984', 'George Orwell', '328', true);
+addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', false);
+addBookToLibrary('The Great Gatsby', 'F. Scott Fitzgerald', '180', true);
+addBookToLibrary('Pride and Prejudice', 'Jane Austen', '279', false);
+addBookToLibrary('Moby Dick', 'Herman Melville', '635', true);
+
+showBooks()
+
 function Book(title, author, pages, readed) {
   this.title = title
   this.author = author
@@ -59,15 +71,3 @@ function validateForm(e) {
     modal.close()
   }
 }
-
-document.querySelector('#showModalBtn').addEventListener('click', modal.showModal.bind(modal))
-document.querySelector('#closeModalBtn').addEventListener('click', modal.close.bind(modal))
-form.addEventListener('submit', validateForm)
-
-addBookToLibrary('1984', 'George Orwell', '328', true);
-addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', false);
-addBookToLibrary('The Great Gatsby', 'F. Scott Fitzgerald', '180', true);
-addBookToLibrary('Pride and Prejudice', 'Jane Austen', '279', false);
-addBookToLibrary('Moby Dick', 'Herman Melville', '635', true);
-
-showBooks()
