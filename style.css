@@ -48,6 +48,11 @@ tbody tr:nth-child(even) {
   background-color: #fff;
 }
 
+.icon {
+  width: 35px;
+  cursor: pointer;
+}
+
 .btn {
   background-color: #000;
   color: #fff;

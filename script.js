@@ -2,17 +2,20 @@ const library = []
 const modal = document.querySelector('#addBookModal')
 const form = document.querySelector('form')
 
-document.querySelector('#showModalBtn').addEventListener('click', modal.showModal.bind(modal))
-document.querySelector('#closeModalBtn').addEventListener('click', modal.close.bind(modal))
-form.addEventListener('submit', validateForm)
-
 addBookToLibrary('1984', 'George Orwell', '328', true);
 addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', false);
 addBookToLibrary('The Great Gatsby', 'F. Scott Fitzgerald', '180', true);
 addBookToLibrary('Pride and Prejudice', 'Jane Austen', '279', false);
 addBookToLibrary('Moby Dick', 'Herman Melville', '635', true);
-
 showBooks()
+
+const deleteButtons = document.querySelectorAll('td:has(.delete-icon)')
+
+form.addEventListener('submit', validateForm)
+document.querySelector('#showModalBtn').addEventListener('click', modal.showModal.bind(modal))
+document.querySelector('#closeModalBtn').addEventListener('click', modal.close.bind(modal))
+
+console.log(deleteButtons)
 
 function Book(title, author, pages, readed) {
   this.title = title
@@ -35,8 +38,9 @@ function showBooks() {
   const body = document.querySelector('#libraryTable tbody')
   body.innerHTML = ''
 
-  library.forEach(book => {
+  library.forEach((book, i) => {
     const row = document.createElement('tr')
+    row.setAttribute('data-index', i)
 
     for (const key in book) {
       if (Object.prototype.hasOwnProperty.call(book, key)) {
@@ -51,6 +55,11 @@ function showBooks() {
         row.appendChild(cell)
       }
     }
+
+    const deleteCell = document.createElement('td')
+    deleteCell.innerHTML = '<img class="icon delete-icon" src="assets/icons/delete.svg" alt="Delete Icon">'
+    deleteCell.addEventListener('click', deleteBook)
+    row.appendChild(deleteCell)
 
     body.appendChild(row)
   })
@@ -70,4 +79,12 @@ function validateForm(e) {
     form.reset()
     modal.close()
   }
+}
+
+function deleteBook(e) {
+  const currentRow = e.currentTarget.parentNode
+  const i = currentRow.dataset.index
+
+  library.splice(i, 1)
+  showBooks()
 }
