@@ -15,18 +15,20 @@ form.addEventListener('submit', validateForm)
 document.querySelector('#showModalBtn').addEventListener('click', modal.showModal.bind(modal))
 document.querySelector('#closeModalBtn').addEventListener('click', modal.close.bind(modal))
 
-console.log(deleteButtons)
-
 function Book(title, author, pages, readed) {
   this.title = title
   this.author = author
   this.pages = pages
-  this.readed = readed
+  this.read = readed
 }
 
 Book.prototype.info = function() {
-  const readedMsg = readed ? 'already read' : 'not read yet'
+  const readedMsg = read ? 'already read' : 'not read yet'
   return `${this.title} by ${this.author}, ${this.pages} pages, ${readedMsg}`
+}
+
+Book.prototype.toogleStatus = function () {
+  this.read = !this.read
 }
 
 function addBookToLibrary(title, author, pages, read) {
@@ -45,13 +47,23 @@ function showBooks() {
     for (const key in book) {
       if (Object.prototype.hasOwnProperty.call(book, key)) {
         let value = book[key]
+        let checkbox
+        const cell = document.createElement('td')
 
         if (typeof value === 'boolean') {
+          checkbox = document.createElement('input')
+          checkbox.type = 'checkbox'
+          checkbox.checked = value
+          checkbox.addEventListener('change', () => {
+            book.toogleStatus()
+            showBooks()
+          })
+
           value = value ? 'Read' : 'Not read'
         }
 
-        const cell = document.createElement('td')
         cell.textContent = value
+        if (checkbox) cell.appendChild(checkbox)
         row.appendChild(cell)
       }
     }
@@ -59,8 +71,8 @@ function showBooks() {
     const deleteCell = document.createElement('td')
     deleteCell.innerHTML = '<img class="icon delete-icon" src="assets/icons/delete.svg" alt="Delete Icon">'
     deleteCell.addEventListener('click', deleteBook)
-    row.appendChild(deleteCell)
 
+    row.appendChild(deleteCell)
     body.appendChild(row)
   })
 }
