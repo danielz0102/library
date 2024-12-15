@@ -41,38 +41,7 @@ function showBooks() {
   body.innerHTML = ''
 
   library.forEach((book, i) => {
-    const row = document.createElement('tr')
-    row.setAttribute('data-index', i)
-
-    for (const key in book) {
-      if (Object.prototype.hasOwnProperty.call(book, key)) {
-        let value = book[key]
-        let checkbox
-        const cell = document.createElement('td')
-
-        if (typeof value === 'boolean') {
-          checkbox = document.createElement('input')
-          checkbox.type = 'checkbox'
-          checkbox.checked = value
-          checkbox.addEventListener('change', () => {
-            book.toogleStatus()
-            showBooks()
-          })
-
-          value = value ? 'Read' : 'Not read'
-        }
-
-        cell.textContent = value
-        if (checkbox) cell.appendChild(checkbox)
-        row.appendChild(cell)
-      }
-    }
-
-    const deleteCell = document.createElement('td')
-    deleteCell.innerHTML = '<img class="icon delete-icon" src="assets/icons/delete.svg" alt="Delete Icon">'
-    deleteCell.addEventListener('click', deleteBook)
-
-    row.appendChild(deleteCell)
+    const row = createRow(book, i)
     body.appendChild(row)
   })
 }
@@ -99,4 +68,47 @@ function deleteBook(e) {
 
   library.splice(i, 1)
   showBooks()
+}
+
+function createRow(book, i) {
+  const row = document.createElement('tr')
+  row.setAttribute('data-index', i)
+
+  for (const key in book) {
+    if (Object.prototype.hasOwnProperty.call(book, key)) {
+      let value = book[key]
+      let checkbox
+      
+      if (typeof value === 'boolean') {
+        checkbox = createCheckbox(value, book)
+        value = value ? 'Read' : 'Not read'
+      }
+      
+      const cell = document.createElement('td')
+      cell.textContent = value
+
+      if (checkbox) cell.appendChild(checkbox)
+
+      row.appendChild(cell)
+    }
+  }
+
+  const deleteCell = document.createElement('td')
+  deleteCell.innerHTML = '<img class="icon delete-icon" src="assets/icons/delete.svg" alt="Delete Icon">'
+  deleteCell.addEventListener('click', deleteBook)
+
+  row.appendChild(deleteCell)
+  return row
+}
+
+function createCheckbox(value, book) {
+  const checkbox = document.createElement('input')
+  checkbox.type = 'checkbox'
+  checkbox.checked = value
+  checkbox.addEventListener('change', () => {
+    book.toogleStatus()
+    showBooks()
+  })
+
+  return checkbox
 }
