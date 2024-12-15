@@ -51,7 +51,7 @@ function validateForm(e) {
   const formIsValid = form.checkValidity()
   
   if (formIsValid) {
-    const bookInfo = Array.from(document.querySelectorAll('input')).map(
+    const bookInfo = Array.from(form.querySelectorAll('input')).map(
       input => input.type === 'checkbox' ? input.checked : input.value
     )
 
