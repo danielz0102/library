@@ -23,8 +23,8 @@ function Book(title, author, pages, readed) {
 }
 
 Book.prototype.info = function() {
-  const readedMsg = read ? 'already read' : 'not read yet'
-  return `${this.title} by ${this.author}, ${this.pages} pages, ${readedMsg}`
+  const readMsg = read ? 'already read' : 'not read yet'
+  return `${this.title} by ${this.author}, ${this.pages} pages, ${readMsg}`
 }
 
 Book.prototype.toogleStatus = function () {
