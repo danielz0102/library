@@ -2,11 +2,11 @@ const library = []
 const modal = document.querySelector('#addBookModal')
 const form = document.querySelector('form')
 
-addBookToLibrary('1984', 'George Orwell', '328', true);
-addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', false);
-addBookToLibrary('The Great Gatsby', 'F. Scott Fitzgerald', '180', true);
-addBookToLibrary('Pride and Prejudice', 'Jane Austen', '279', false);
-addBookToLibrary('Moby Dick', 'Herman Melville', '635', true);
+// addBookToLibrary('1984', 'George Orwell', '328', true);
+// addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', false);
+// addBookToLibrary('The Great Gatsby', 'F. Scott Fitzgerald', '180', true);
+// addBookToLibrary('Pride and Prejudice', 'Jane Austen', '279', false);
+// addBookToLibrary('Moby Dick', 'Herman Melville', '635', true);
 showBooks()
 
 const deleteButtons = document.querySelectorAll('td:has(.delete-icon)')
