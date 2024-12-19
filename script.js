@@ -15,20 +15,22 @@ form.addEventListener('submit', validateForm)
 document.querySelector('#showModalBtn').addEventListener('click', modal.showModal.bind(modal))
 document.querySelector('#closeModalBtn').addEventListener('click', modal.close.bind(modal))
 
-function Book(title, author, pages, readed) {
-  this.title = title
-  this.author = author
-  this.pages = pages
-  this.read = readed
-}
+class Book {
+  constructor(title, author, pages, readed) {
+    this.title = title
+    this.author = author
+    this.pages = pages
+    this.read = readed
+  }
 
-Book.prototype.info = function() {
-  const readMsg = read ? 'already read' : 'not read yet'
-  return `${this.title} by ${this.author}, ${this.pages} pages, ${readMsg}`
-}
+  info() {
+    const readMsg = this.read ? 'already read' : 'not read yet'
+    return `${this.title} by ${this.author}, ${this.pages} pages, ${readMsg}`
+  }
 
-Book.prototype.toogleStatus = function () {
-  this.read = !this.read
+  toogleStatus() {
+    this.read = !this.read
+  }
 }
 
 function addBookToLibrary(title, author, pages, read) {
